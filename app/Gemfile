@@ -11,3 +11,6 @@ gem 'sinatra-activerecord', '~> 2.0'
 
 # Use Postgresql for ActiveRecord
 gem 'pg'
+
+# Use rake to execute ActiveRecord's tasks
+gem 'rake'
