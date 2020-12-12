@@ -14,3 +14,8 @@ gem 'pg'
 
 # Use rake to execute ActiveRecord's tasks
 gem 'rake'
+
+group :development, :test do
+  # Use SQLite for ActiveRecord
+  gem 'rerun'
+end

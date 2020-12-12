@@ -4,6 +4,9 @@ services:
     image: "wputra/sinatra:latest"
     ports:
       - "4567:4567"
+    volumes:
+      - ./app:/app
+    command: rerun ruby app.rb
     restart: always
     environment:
       DATABASE_HOST: db
