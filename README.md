@@ -25,6 +25,6 @@ curl -X PATCH http://127.0.0.1:4567/1  -F "name=test100"
 curl -X DELETE http://127.0.0.1:4567/1
 
 ## Useful Tips
-1. App code is mounted to `web` docker container. and we use `rerun` so the server will recognise code changes without restart.
+1. App code is mounted to `web` docker container. We use `rerun` so the server will recognise code changes without restart.
 2. To enter `web` docker container, please do `docker-compose exec web /bin/bash`.
 3. To enter `db` docker container, please do `docker-compose exec db /bin/sh`.
