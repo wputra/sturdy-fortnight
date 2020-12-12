@@ -10,7 +10,7 @@ services:
     restart: always
     environment:
       DATABASE_HOST: db
-      DATABASE_NAME: sinatra
+      DATABASE_NAME: sinatra_dev
       DATABASE_USER: sinatra
       DATABASE_PASSWORD: 51N4tr4
   db:
@@ -21,7 +21,7 @@ services:
       - db_data:/var/lib/postgresql/data
     restart: always
     environment:
-      POSTGRES_DB: sinatra
+      POSTGRES_DB: sinatra_dev
       POSTGRES_USER: sinatra
       POSTGRES_PASSWORD: 51N4tr4
 
