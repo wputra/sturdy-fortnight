@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  web:
+    image: "wputra/sinatra:latest"
+    ports:
+      - "4567:4567"
+    restart: always
+    environment:
+      DATABASE_HOST: db
+      DATABASE_NAME: sinatra
+      DATABASE_USER: sinatra
+      DATABASE_PASSWORD: 51N4tr4
+  db:
+    image: postgres:12-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_DB: sinatra
+      POSTGRES_USER: sinatra
+      POSTGRES_PASSWORD: 51N4tr4
+
+volumes:
+  db_data: {}
