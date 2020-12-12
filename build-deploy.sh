@@ -14,14 +14,14 @@ deploy () {
 
 db_migrate () {
   echo "migrating database..."
-  docker-compose run web bundle exec rake db:create
-  docker-compose run web bundle exec rake db:migrate
+  docker-compose exec web bundle exec rake db:create
+  docker-compose exec web bundle exec rake db:migrate
 }
 
 db_load () {
   echo "loading database..."
-  docker-compose run web bundle exec rake db:create
-  docker-compose run web bundle exec rake db:schema:load
+  docker-compose exec web bundle exec rake db:create
+  docker-compose exec web bundle exec rake db:schema:load
 }
 
 # main
