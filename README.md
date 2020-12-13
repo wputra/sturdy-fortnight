@@ -21,6 +21,17 @@ The purpose of this runbook is to walk you through building a Sinatra app with p
 4. Execute `./build-deploy.sh db_load` to load from schema. You only need to **DO IT ONCE**, when database is empty at first time.
 
 5. Sinatra app should run on port 4567
+   ```
+   % curl localhost:4567 -I
+
+   HTTP/1.1 200 OK
+   Content-Type: application/json
+   Content-Length: 2
+   X-Content-Type-Options: nosniff
+   Server: WEBrick/1.6.0 (Ruby/2.7.2/2020-10-01)
+   Date: Sun, 13 Dec 2020 00:43:16 GMT
+   Connection: Keep-Alive
+   ```
 
 
 ## Usage
