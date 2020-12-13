@@ -39,19 +39,19 @@ Interact with app using `curl`
 
 ### POST
 ```
-curl -X POST http://localhost:4567/ -F "name=test1"
+% curl -X POST http://localhost:4567/ -F "name=test1"
 
-for i in $(seq 11 30);do curl -X POST http://localhost:4567/ -F "name=test$i";done
+% for i in $(seq 11 30);do curl -X POST http://localhost:4567/ -F "name=test$i";done
 ```
 
 ### PATCH
 ```
-curl -X PATCH http://localhost:4567/1  -F "name=test100"
+% curl -X PATCH http://localhost:4567/1  -F "name=test100"
 ```
 
 ### DELETE
 ```
-curl -X DELETE http://localhost:4567/1
+% curl -X DELETE http://localhost:4567/1
 ```
 
 
