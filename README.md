@@ -10,7 +10,7 @@ The purpose of this runbook is to walk you through building a Sinatra app with p
     * Git
     * Docker (v19.03 or later)
     * Docker Compose (v1.21.2 or later)
-For MacOS user: simply install Docker Desktop: https://hub.docker.com/editions/community/docker-ce-desktop-mac/, it already include Compose.
+    * For MacOS user: simply install Docker Desktop: https://hub.docker.com/editions/community/docker-ce-desktop-mac/, it already include Compose.
 
 2. Clone this repo. Sinatra app code exist under `/app` directory. You may interested with `Dockerfile` and `docker-compose.yml`.
    ```
@@ -41,7 +41,7 @@ curl -X PATCH http://localhost:4567/1  -F "name=test100"
 ### DELETE
 ```
 curl -X DELETE http://localhost:4567/1
-``
+```
 
 
 ## Useful Tips
