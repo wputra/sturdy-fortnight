@@ -18,7 +18,7 @@ The purpose of this runbook is to walk you through building a Sinatra app with p
    ```
 3. Execute `./build-deploy.sh` to start the app. It may take few minutes.
 
-4. Execute `./build-deploy.sh db_load` to load from schema. You only need to do it when database is empty.
+4. Execute `./build-deploy.sh db_load` to load from schema. You only need to **DO IT ONCE**, when database is empty at first time.
 
 5. Sinatra app should run on port 4567
 
