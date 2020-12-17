@@ -16,6 +16,6 @@ gem 'pg'
 gem 'rake'
 
 group :development, :test do
-  # Use SQLite for ActiveRecord
+  # Use rerun for autoreload
   gem 'rerun'
 end
