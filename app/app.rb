@@ -27,7 +27,7 @@ post '/' do
   resource = Resource.create(params)
 
   if resource
-    halt 206, json(resource)
+    halt 201, json(resource)
   else
     halt 500
   end
