@@ -59,3 +59,78 @@ Interact with app using `curl`
 1. App code is mounted to `web` docker container. We use `rerun` so the server will recognise code changes without restart.
 2. To enter `web` docker container, please do `docker-compose exec web /bin/bash`.
 3. To enter `db` docker container, please do `docker-compose exec db /bin/sh`.
+
+## Add more column to a table
+1. Create new migration file, under `./app/db/migration/` folder
+   ```
+   % docker-compose exec web /bin/bash
+
+   root@2311df322979:/app# bundle exec rake db:create_migration NAME=add_location_to_resources
+   db/migrate/20201219010643_add_location_to_resources.rb
+
+   root@2311df322979:/app# exit
+   ```
+2. Modify newly created migration file
+   ```
+   class AddLocationToResources < ActiveRecord::Migration[6.1]
+     def change
+       add_column :resources, :location, :string
+     end
+   end
+   ```
+3. Execute `./build-deploy.sh db_migrate` to apply the changes. This command also will adjust the schema
+   ```
+   migrating database...
+   Database 'sinatra' already exists
+   == 20201219010643 AddLocationToResources: migrating ===========================
+   -- add_column(:resources, :location, :string)
+      -> 0.0074s
+   == 20201219010643 AddLocationToResources: migrated (0.0077s) ==================
+   ```
+4. Check the db.
+   ```
+   % docker-compose exec db /bin/sh
+
+   / # psql -U sinatra
+   psql (12.5)
+   Type "help" for help
+
+   sinatra=# \l
+                                  List of databases
+      Name    |  Owner  | Encoding |  Collate   |   Ctype    |  Access privileges
+   -----------+---------+----------+------------+------------+---------------------
+    postgres  | sinatra | UTF8     | en_US.utf8 | en_US.utf8 |
+    sinatra   | sinatra | UTF8     | en_US.utf8 | en_US.utf8 |
+    template0 | sinatra | UTF8     | en_US.utf8 | en_US.utf8 | =c/sinatra         +
+              |         |          |            |            | sinatra=CTc/sinatra
+    template1 | sinatra | UTF8     | en_US.utf8 | en_US.utf8 | =c/sinatra         +
+              |         |          |            |            | sinatra=CTc/sinatra
+   (4 rows)
+
+   sinatra=# \c sinatra
+   You are now connected to database "sinatra" as user "sinatra".
+
+   sinatra=# \dt
+                   List of relations
+    Schema |         Name         | Type  |  Owner
+   --------+----------------------+-------+---------
+    public | ar_internal_metadata | table | sinatra
+    public | resources            | table | sinatra
+    public | schema_migrations    | table | sinatra
+   (3 rows)
+
+   sinatra=# select * from resources;
+    id |  name  |         created_at         |         updated_at         | location
+   ----+--------+----------------------------+----------------------------+----------
+     1 | test21 | 2020-12-12 14:49:11.184652 | 2020-12-12 14:49:11.184652 |
+     2 | test22 | 2020-12-12 14:49:11.197838 | 2020-12-12 14:49:11.197838 |
+     3 | test23 | 2020-12-12 14:49:11.21198  | 2020-12-12 14:49:11.21198  |
+     4 | test24 | 2020-12-12 14:49:11.230775 | 2020-12-12 14:49:11.230775 |
+     5 | test25 | 2020-12-12 14:49:11.246859 | 2020-12-12 14:49:11.246859 |
+     6 | test26 | 2020-12-12 14:49:11.261876 | 2020-12-12 14:49:11.261876 |
+     7 | test27 | 2020-12-12 14:49:11.281857 | 2020-12-12 14:49:11.281857 |
+     8 | test28 | 2020-12-12 14:49:11.296511 | 2020-12-12 14:49:11.296511 |
+     9 | test29 | 2020-12-12 14:49:11.30978  | 2020-12-12 14:49:11.30978  |
+    10 | test30 | 2020-12-12 14:49:11.326953 | 2020-12-12 14:49:11.326953 |
+   (10 rows)
+   ```
